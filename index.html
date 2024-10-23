@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Quest</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/space.css">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- <button id="restartMission" class="btn btn-danger">Restart Mission</button> -->
+
+    <!-- Background Video -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="src/assets/videos/an_anime_video_of_planets_of_the_galaxy_orbiting_c6940a.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+     <!-- Background Music -->
+     <audio id="backgroundMusic" src="src/assets/sounds/chocolate-galaxy-waltz-background-music-235343.mp3" autoplay loop  ></audio>
+     <button id="muteButton">
+        <i id="muteIcon" class="fas fa-volume-up"></i> 
+    </button>
+
+    
+      <!-- Welcome Section with Image Carousel -->
+    <section id="welcome" class="text-center p-5">
+        <div class="container">
+            <h1 class="display-4">Welcome to the Galaxy Space Quest!</h1>
+            <p class="lead">Welcome, young explores! Are you ready for a space adventure?Let us explore the wonders of our solar system!</p>
+            
+            <!-- Carousel -->
+            <div id="spaceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item ">
+                        <img src="src/assets/image/Universe-Astronomy-Art-Concept.jpg" class="d-block w-100" alt="Rocket" style="max-height: 400px; width: auto;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Blast Off to the Stars</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item active">
+                        <img src="/src/assets/image/planets 1.jpg" class="d-block w-100" alt="Planets" style="max-height: 400px; width: auto;" >
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Explore the Planets</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="src/assets/image/rocket_launch.webp" class="d-block w-100" alt="Galaxy" style="max-height: 400px; width: auto;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Journey Through the Galaxy</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#spaceCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#spaceCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <button class="btn btn-primary btn-lg mt-4" id="startAdventure">Start the Adventure</button>
+        </div>
+    </section>
+    
+    <!-- Choice Section -->
+    <section id="choice" class="text-center p-5" style="display: none;">
+        <div class="container">
+            <h1 class="display-4"> Are You Ready<br> <h2><i>Make Your Choice!</i></h2></h1>
+            <div id="rocket" class="rocket">
+                <img src="src/assets/image/Rocket3.webp" alt="Rocket" class="img-fluid">
+            </div>
+            <p class="lead" style="color: black; font-weight: bold;">Do you want to launch the rocket?</p>
+            <button class="btn btn-success btn-lg" id="launchButton">Launch</button>
+            <button class="btn btn-danger btn-lg" id="noLaunchButton" data-bs-toggle="tooltip" title="When ready to launch, just click the launch button!">Do Not Launch</button>
+        </div>
+    </section>
+
+    <!-- Launch Section (Initially Hidden) -->
+    <section id="launch" class="text-center p-5" style="display: none;">
+        <div class="container">
+            <h1 class="display-4">Rocket Launch Countdown</h1>
+            <p class="lead" id="countdown">3</p>
+            <!-- Rocket Image -->
+            <div id="rocket" class="rocket">
+                <img src="src/assets/image/Rocket3.webp" alt="Rocket" class="img-fluid">
+            </div>
+            <!-- Launch sound -->
+            <audio id="launchSound" src="src/assets/sounds/rocket-loop-99748.mp3" ></audio>
+
+
+            <!-- Popover for Success Message -->
+            <div id="popoverMessage" class="popover-message alert alert-success alert-dismissible fade show" role="alert">
+                Successfully launched! We're heading to the stars!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="planet-display" class="text-center p-5" style="display: none;">
+        <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+            <h2 class="mb-4">Planets of the Galaxy</h2> <!-- Title for the section -->
+            <button id="restartMission" class="btn btn-danger">Restart Mission</button>
+            <!-- Planet Card -->
+            <div class="card mb-4" style=" width: 40rem;">
+                <img id="planet-image" class="card-img-top" src="" alt="Planet Image" style="max-height: 400px; width: auto;">
+                <div class="card-body">
+                    <h2 id="planet-title" class="card-title">Planet Name</h2>
+                    <p id="planet-info" class="card-text">Brief description of the planet.</p>
+                    <div class="d-flex justify-content-between">
+                        <button id="prev-button" class="btn btn-secondary">Previous</button>
+                        <button id="next-button" class="btn btn-primary">Next Planet</button>
+
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Video Card -->
+            <div class="card mb-3" style="width: 35rem; display: none; background-color: rgba(219, 227, 236, 0.411);">
+                <div class="card-body">
+                    <h5 class="card-title">Explore the Planets</h5>
+                    <p class="card-text"><h3>Planets Song</h3>  Planets of the solar system song.</p> 
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" id="planets_Video_Song"  controls>
+                            <source src="src/assets/videos/The Planet Song.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <iframe class="embed-responsive-item" src="https://youtu.be/mQrlgH97v94" allowfullscreen></iframe> -->
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <button id="prev-button" class="btn btn-secondary">Back</button>
+                        <button id="restart-button" class="btn btn-primary">Review Planets Again </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- JavaScript & Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/components/rocketlaunch.js"></script>
+    <script src="/src/components/spacePlanets.js"></script>
+    <script src="/src/components/spacesound.js"></script>
+    <script src="/src/components/pageload.js"></script>
+
+
+</body>
+</html>
